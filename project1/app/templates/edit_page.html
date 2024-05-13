@@ -1,0 +1,203 @@
+{% extends 'index.html' %}
+ 
+{% load custom_filters %}
+
+
+
+    
+
+
+
+
+
+    
+
+    {% block content %}
+
+    <h1 class="mt-4">Админ панель</h1>
+
+     <!DOCTYPE html>
+<html>
+<head>
+    <title>Результат анализа</title>
+</head>
+<body><div id="plot"></div>
+
+    <h1>Предсказанная концентрация гумуса: {{ humus_concentration }}</h1>
+
+    <img src="data:image/png;base64,{{ graphic }}" alt="График">
+
+</body>
+</html>
+
+    
+
+    
+
+
+
+
+
+
+
+    {% if success %}
+
+    <p style="color:red">Запись добавлена</p>
+
+    {% endif %}
+
+    
+
+    
+
+    {% if update %}
+
+    
+
+    {% if success_update %}
+
+    <p style="color:red">Запись обновлена</p>
+
+    {% endif %}
+
+    <p class="mt-4">Страница редактирования</p>
+
+    <p><a href="{% url 'edit_page' %}">Вернуться назад</a></p>
+
+    
+
+    <form id="update_data" method="post">
+
+            {% csrf_token %}
+
+            {{form}}
+
+        </form>
+
+    <button form="update_data" type="submit" class="btn btn-primary">Обновить</button>
+
+    
+
+    {% else %}
+
+    
+
+    
+
+      
+      
+    
+
+
+ <!-- Button trigger modal -->
+
+ {% endif%}
+    
+    <table class="table table-bordered mt-4">
+
+  <thead>
+
+    <tr>
+
+
+      <th scope="col">red color
+</th>
+
+      <th scope="col">green color
+</th>
+
+      <th scope="col">blue color
+</th>
+      <th scope="col">8 канал
+</th>
+
+      <th scope="col">7 канал
+</th>
+
+      <th scope="col">6 канал
+</th>
+
+
+      <th scope="col">5 канал
+</th>
+
+
+
+
+
+      <th scope="col">4 канал
+</th>
+  
+      
+      
+      
+
+   
+
+      <th scope="col">3 канал
+</th>
+      <th scope="col">2 канал
+</th>      <th scope="col">1 канал
+</th>         
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+<tr>
+  {% for i in nd%}<th>{{i}} </th>{% endfor %}</tr>
+    
+  
+
+
+
+  </tbody>
+
+</table>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Добавить запись
+</button>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="add_form" method="post">
+          {% csrf_token %}
+
+            {{form}}
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        
+
+        <button form="add_form" type="submit" class="btn btn-primary">Добавить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+    
+
+   {% endblock %}

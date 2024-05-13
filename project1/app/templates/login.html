@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+    
+
+    {% block content %}
+
+    <h1 class="mt-4">Авторизация </h1>
+
+    <p><a href="/">Вернуться назад</a></p>
+<form id="add_form" method="post">
+          {% csrf_token %}
+
+            {{form}}
+<div style="height:7px; background-color:#FFFFFF"></div>
+<div style="position:relative">
+            <button form="add_form" type="submit" class="btn btn-primary ">Добавить</button>
+
+        </form
+
+
+
+{% endblock %}
